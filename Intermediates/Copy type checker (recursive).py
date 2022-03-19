@@ -30,6 +30,7 @@ class Checker:
     def _recursive(self, iter1, iter2, recursive):
         if recursive:
             for i, j in zip(iter1, iter2):
+                if is_mutable(i):   break
                 if is_container(i):
                     self.is_nested = True
                     self.iter1, self.iter2 = i, j
