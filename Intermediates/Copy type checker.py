@@ -16,8 +16,7 @@ class Checker:
             return 'assignment'
         elif isinstance(self.iter1, dict):
             return self._get_type(self.iter1.values(), self.iter2.values())
-        else:
-            return self._get_type(self.iter1, self.iter2)
+        return self._get_type(self.iter1, self.iter2)
     
     def _is_mutable(self, obj):
         return isinstance(obj, (MutableSequence, MutableSet, MutableMapping))
