@@ -26,14 +26,3 @@ class Checker:
             if self._is_mutable(i):
                 return 'shallow copy' if i is j else 'deep copy'
         raise NoMutableElementFoundError
-     
-    
-def main():
-    iter1 = [1, 2, 3]
-    iter2 = iter1
-    checker = Checker(iter1, iter2)
-    print(checker.check_copy())
-    
-    
-if __name__ == '__main__':
-    main()
