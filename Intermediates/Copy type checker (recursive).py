@@ -22,7 +22,8 @@ class Checker:
         assert iter1 == iter2, 'Two iterables should have the same value'
         self._iter1 = iter1
         self._iter2 = iter2
-        self.iter = deepcopy(iter1)
+        self.iter1 = deepcopy(iter1)
+        self.iter2 = deepcopy(iter2)
         self.stop_at = None
         self.has_mutable = False
 
