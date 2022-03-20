@@ -1,7 +1,8 @@
 from collections.abc import MutableSequence, MutableSet, MutableMapping
 
 
-class NoMutableElementFoundError(Exception): pass
+class NoMutableElementFoundError(Exception):
+    pass
 
 
 class Checker:
