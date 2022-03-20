@@ -1,5 +1,4 @@
 from collections.abc import MutableSequence, MutableSet, MutableMapping, Container
-from copy import deepcopy
 
 
 class NoMutableElementFoundError(Exception): pass
