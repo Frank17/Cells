@@ -40,8 +40,7 @@ class Checker:
                 if is_mutable(i):
                     self.has_mutable = True
                     self.stop_at = i
-                    iter1, iter2 = i, j
-                    break
+                    return self._get_type(i, j)
                 if is_container(i):
                     self._iter1, self._iter2 = i, j
                     return self.check_copy(True)
