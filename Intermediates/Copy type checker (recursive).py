@@ -22,13 +22,12 @@ class Checker:
         assert iter1 == iter2, 'Two iterables should have the same value'
         self._iter1 = iter1
         self._iter2 = iter2
-        self.iter1 = deepcopy(iter1)
-        self.iter2 = deepcopy(iter2)
+        self.iter = iter1
         self.stop_at = None
         self.has_mutable = False
 
-    def check_copy(self, recursive=False):
-        if self.iter1 is self.iter2:
+    def check_copy(self, recursive=False, is_first=True):
+        if is_first and (self._iter1 is self._iter2):
             return 'assignment'
         elif isinstance(self._iter1, dict):
             return self._recursive(self._iter1.values(),
@@ -44,7 +43,7 @@ class Checker:
                     return self._get_type(i, j)
                 if is_container(i):
                     self._iter1, self._iter2 = i, j
-                    return self.check_copy(True)
+                    return self.check_copy(True, False)
         return self._get_type(iter1, iter2)
 
     def _get_type(self, iter1, iter2):
