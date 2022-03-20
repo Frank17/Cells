@@ -1,7 +1,8 @@
 from collections.abc import MutableSequence, MutableSet, MutableMapping, Container
 
 
-class NoMutableElementFoundError(Exception): pass
+class NoMutableElementFoundError(Exception):
+    pass
 
 
 def is_mutable(obj):
