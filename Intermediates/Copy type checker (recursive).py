@@ -27,8 +27,8 @@ class Checker:
         self.stop_at = None
         self.has_mutable = False
 
-    def check_copy(self, recursive=False, is_first=True):
-        if is_first and (self._iter1 is self._iter2):
+    def check_copy(self, recursive=False):
+        if self.iter1 is self.iter2:
             return 'assignment'
         elif isinstance(self._iter1, dict):
             return self._recursive(self._iter1.values(),
@@ -45,7 +45,7 @@ class Checker:
                     break
                 if is_container(i):
                     self._iter1, self._iter2 = i, j
-                    return self.check_copy(True, False)
+                    return self.check_copy(True)
         return self._get_type(iter1, iter2)
 
     def _get_type(self, iter1, iter2):
