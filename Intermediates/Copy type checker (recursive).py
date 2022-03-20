@@ -17,7 +17,7 @@ class Checker:
         assert iter1 == iter2, 'Two iterables should have the same value'
         self.iter1 = iter1
         self.iter2 = iter2
-        self.is_nested = False
+        self.has_mutable = False
 
     def check_copy(self, recursive=False):
         if self.iter1 is self.iter2:
@@ -30,15 +30,16 @@ class Checker:
     def _recursive(self, iter1, iter2, recursive):
         if recursive:
             for i, j in zip(iter1, iter2):
-                if is_mutable(i):   break
+                if is_mutable(i):
+                    self.has_mutable = True
+                    break
                 if is_container(i):
-                    self.is_nested = True
                     self.iter1, self.iter2 = i, j
                     self.check_copy(True)
         return self._get_type(self.iter1, self.iter2)
 
     def _get_type(self, iter1, iter2):
-        if self.is_nested and is_mutable(iter1):
+        if self.has_mutable:
             return 'shallow copy' if iter1 is iter2 else 'deep copy'
         for i, j in zip(iter1, iter2):
             if is_mutable(i):
